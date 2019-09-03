@@ -10,3 +10,5 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ## R Markdown
+Full description of the app is available on [gh-pages](https://olarina.github.io/DevelopingDataProductsPrj3/projectDescr.html)
+            
