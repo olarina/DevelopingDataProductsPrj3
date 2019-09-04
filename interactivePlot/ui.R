@@ -1,35 +1,24 @@
-#
-# This is the user-interface definition of a Shiny web application. You can
-# run the application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-# 
-#    http://shiny.rstudio.com/
-#
-
 library(shiny)
+doc = "This interactive plot shows that observations chosen to fit a model are
+very important for a final prediction. To get the prediction select a temperature
+on slider and then choose observations for model and prediction on plot. Get your prediction."
 
-# Define UI for application that draws a histogram
 shinyUI(fluidPage(
-    
-    # Application title
-    titlePanel("Old Faithful Geyser Data"),
-    
-    # Sidebar with a slider input for number of bins 
+    titlePanel("Dependency between ozone and temperarure"),
     sidebarLayout(
         sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
+            sliderInput("temp",
+                        "Choose temperature:",
+                        min = 57,
+                        max = 97,
+                        value = 79),
+            h5("Ozone prediction for chosen temperature:"),
+            textOutput("pointPr")
         ),
-        
-        # Show a plot of the generated distribution
         mainPanel(
             tabsetPanel(type = "tabs",
-                        tabPanel("Interactive plot", br(), plotOutput("distPlot")),
-                        tabPanel("Documentation", br(),"Write a shiny application with associated supporting documentation. The documentation should be thought of as whatever a user will need to get started using your application.Write a shiny application with associated supporting documentation. The documentation should be thought of as whatever a user will need to get started using your application.", br(), uiOutput("dlink")))
+                        tabPanel("Interactive plot", br(), plotOutput("ozonePlot", brush = brushOpts(id = "brush1"))),
+                        tabPanel("Documentation", br(), doc, br(), uiOutput("dlink")))
         )
     )
 ))
